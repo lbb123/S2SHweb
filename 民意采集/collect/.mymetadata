@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="collect"
+  id="myeclipse.1456661208223"
+  context-root="/collect"
+  j2ee-spec="5.0"
+  archive="collect.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
