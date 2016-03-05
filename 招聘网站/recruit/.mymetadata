@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="recruit"
+  id="myeclipse.1454470223589"
+  context-root="/recruit"
+  j2ee-spec="5.0"
+  archive="recruit.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,14 @@
+#删除的log4j文件配置
+log4j.rootLogger=ERROR,consol  
+log4j.logger.jmccLogger=ERROR,html  
+  
+log4j.appender.console=org.apache.log4j.ConsoleAppender  
+log4j.appender.console.layout=org.apache.log4j.SimpleLayout  
+  
+log4j.appender.html=org.apache.log4j.RollingFileAppender  
+log4j.appender.html.maxFileSize=1KB  
+log4j.appender.html.maxBackupIndex=2  
+log4j.appender.html.file=${webapp.root}/WEB-INF/log/log1.log 
+  
+log4j.appender.html.layout=org.apache.log4j.HTMLLayout  
+log4j.appender.html.layout.locationInfo=true 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 开启使用开发模式，详细错误提示false -->
+	<constant name="struts.devMode" value="false" />
+	<!-- 将对象交给spring管理 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 指定资源编码类型 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 指定每次请求到达，重新加载资源文件 -->
+	<constant name="struts.i18n.reload" value="false" />
+	<!-- 指定每次配置文件更改后，自动重新加载 -->
+	<constant name="struts.configuration.xml.reload" value="false" />
+	<!--错误拦截器开始-->
+	<constant name="struts.convention.default.parent.package"
+		value="crud-default" />
+
+	<!--管理员登录拦截器开始-->
+	<package name="crud-default" extends="convention-default"
+		namespace="/">
+		<interceptors>
+			<!--    你的拦截器 -->
+			<interceptor name="checklogin" class="com.util.LoginInterceptor"></interceptor>
+			<!--    错误拦截器 -->
+			<interceptor name="errorInterceptor" class="com.util.ErrorInterceptor"></interceptor>
+			<!--
+				基于paramsPrepareParamsStack, 增加store
+				interceptor保证actionMessage在redirect后不会丢失
+			-->
+			<interceptor-stack name="crudStack">
+				<interceptor-ref name="store">
+					<param name="operationMode">AUTOMATIC</param>
+				</interceptor-ref>
+				<interceptor-ref name="paramsPrepareParamsStack" />
+				<!--    在拦截器栈里引入你所加的拦截器 -->
+				<interceptor-ref name="checklogin">
+					<param name="loginUser">admin</param>
+					<param name="exclude">adminlist,cateloglist,goodslist,adminorderlist,adminmessagelist</param>
+				</interceptor-ref>
+				<interceptor-ref name="errorInterceptor" />
+			</interceptor-stack>
+			
+		</interceptors>
+		<default-interceptor-ref name="crudStack" />
+		<global-results>
+			<result name="adminlogin">/admin/login.jsp</result>
+			<result name="errorMsg">/404.jsp</result>
+		</global-results>
+	</package>
+
+</struts>    
